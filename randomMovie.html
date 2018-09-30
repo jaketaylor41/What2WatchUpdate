@@ -14,49 +14,177 @@
 
 
 </head>
-<body>
+<body class="randomMovieBody">
 
-<!-- Card -->
-<div class="card card-cascade wider reverse" style="background-color: transparent;">
+<div id="mySidenav" class="sidenav" style="z-index: 501; background-color: #ffffff">
 
-    <!-- Card image -->
-    <div class="view overlay">
+        <div class="backgroundOverlay"></div>
 
-        <div class="welcomeIntro">Click Below for a Random Movie...</div>
-        <!--<h1 class="welcomeIntro" style="text-align: center; transform: translateY(200%); margin: 0; color: #ffffff; font-family: SF-Pro-Display-Medium;">Click Below for a Random Movie..</h1>-->
-        <img class="welcomeImg" src="images/deadpool.png" style="width: 45%; position: absolute; margin-left: 28%; bottom: 0; z-index: 200;"/>
-        <!--<div class="loadingScreen" style="display: none"></div>-->
-        <div class="movieContainer">
-            <div class="randomMovieContainer"></div>
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+    <img class="sideNavLogo" src="images/W2Wheader.png">
+    <hr>
+
+    <div class="md-form" style="width: 100%; display: inline-block; margin-top: 0;">
+        <input class="form-control" style="padding-left: 10px;" type="text" placeholder="Search" aria-label="Search">
+    </div>
+
+    <div>
+        <a id="link1" class="nav-link waves-effect" href="home.html">
+            <i class="fa fa-chevron-right"></i>
+            Home
+        </a>
+        <a id="link2" class="nav-link waves-effect" href="randomTV.html">
+            <i class="fa fa-chevron-right"></i>
+            Random TV Shows
+        </a>
+        <a id="link3" class="nav-link waves-effect" href="nameSearch.html">
+          <i class="fa fa-chevron-right"></i>
+            Name Search
+        </a>
+        <a id="link4" class="nav-link waves-effect" href="#">
+           <i class="fa fa-chevron-right"></i>
+            About
+        </a>
+    </div>
+</div>
+
+<span style="font-size:30px;cursor:pointer; position: absolute; z-index: 500; margin-left: 40px; margin-top: 20px; color: #ffffff;" onclick="openNav()">&#9776;</span>
+
+<script>
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+        document.getElementById("sideNavOverlay").style.backgroundColor = "rgba(0,0,0,0.5)";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+        document.getElementById("sideNavOverlay").style.backgroundColor = "transparent";
+
+    }
+</script>
+
+    <div class="randomMovieContainer">
+        <h1 class="welcomeIntro">Click Below for a Random Movie...</h1>
+        <div class="movieContainer"></div>
+    </div>
+<div class="randomButtonDiv">
+    <button id="randomMovieBtn" class="btn btn-primary" style="display: block; margin: 0 auto; border-radius: 50%; height: 80px; z-index: 3;"><i class="fa fa-random" style="font-size: 25px"></i></button>
+</div>
+
+
+
+
+<script>
+
+
+
+
+    $('#randomMovieBtn').click(function(e){
+        event.preventDefault();
+
+        var random_index = Math.floor(Math.random() * 20);
+        var randomPage = Math.floor(Math.random() * 300) + 1;
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://api.themoviedb.org/3/movie/top_rated?page="+ randomPage +"&language=en-US&api_key=b2b33767c6b429003530678acd077911",
+            "method": "GET",
+            "cache": "false",
+            "headers": {},
+            "data": "{}",
+            "error": function (jqXHR, textStatus){
+                if (jqXHR.status === 404) {
+
+
+
+                    var imgArray = new Array();
+                    imgArray[0] = "images/batman.jpg";
+                    imgArray[1] = "images/godfather.jpg";
+                    imgArray[2] = "images/shawshank.jpg";
+                    imgArray[3] = "images/avengers.jpg";
+                    imgArray[4] = "images/pulp.jpg";
+                    imgArray[5] = "images/goodfellas.jpg";
+                    imgArray[6] = "images/inception.jpg";
+                    imgArray[7] = "images/forrestgump.jpg";
+                    imgArray[8] = "images/matrix.jpg";
+                    imgArray[9] = "images/fightClub.jpg";
+                    imgArray[10] = "images/theGood.jpg";
+                    imgArray[12] = "images/city.jpg";
+                    imgArray[13] = "images/departed.jpg";
+                    imgArray[14] = "images/greenMile.jpg";
+                    imgArray[15] = "images/psycho.jpg";
+                    imgArray[16] = "images/spirited.jpg";
+                    imgArray[17] = "images/twelveAngryMen.jpg";
+                    imgArray[18] = "images/interstellar.jpg";
+                    imgArray[19] = "images/schindler.jpg";
+                    imgArray[20] = "images/back2Future.jpg";
+
+                    var rnd = Math.floor(Math.random() * imgArray.length);
+                    if (rnd == 0) {
+                        rnd = 1;
+                    }
+
+                    $(".movieContainer").append('<img  id="movieImg" style="height: 500px;" src="' + imgArray[rnd] + '"/>').hide().fadeIn(2000);
+                    $(".movieContainer").append('<a href="https://www.imdb.com" target="_blank"><span style="margin: 10px 0 10px 0; font-size: 25px; position: relative; z-index: 5000; display: inline-block;" class="fa fa-info-circle"></span></a>').hide().fadeIn(2000);
+
+                    // $(".movieContainer").append('<h1 class="welcomeIntro" style="text-align: center; transform: translateY(200%); margin: 0; font-family: SF-Pro-Display-Medium;">Bad Deadpool... Good Deadpool!</h1>');
+                    // $(".movieContainer").append('<img src="images/deadpool.jpg" style="width: 45%; position: absolute; margin-left: 20%; bottom: 0;">')
+                }
+
+            }
+        };
+
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+
+
+            $(".movieContainer").append('<a data-toggle="modal" data-target="#myModal"><img id="movieImg" onerror="imgError(this)" style="height: 500px;" src="http://image.tmdb.org/t/p/original' + response.results[random_index].poster_path + '"/></a>').hide().fadeIn(2000);
+            // $(".randomButtonDiv").append('<button id="randomMovieBtn2" class="btn btn-primary" style="display: block; margin: 0 auto; border-radius: 50%; height: 80px; z-index: 3;"><i class="fa fa-random" style="font-size: 25px"></i></button>\n');
+            $("#modalContent1").append("<h6 class='overviewTitle'>Overview: </h6> ");
+            $("#modalContent1").append('<p class="overviewText">' + response.results[random_index].overview + '</p>');
+            $(".modalHeader").append('<h1 class="modalTitle">' + response.results[random_index].original_title + '</h1>' +
+                '<h6 class="modalDate">' + "Release Date: " + response.results[random_index].release_date + '</h6>');
+
+
+        });
+        $(".movieContainer").empty();
+        $(".welcomeIntro").empty();
+        $(".welcomeImg").remove();
+        $("#modalContent1").empty();
+        $(".modalHeader").empty();
+        $(".overviewDiv").empty();
+    });
+
+    function imgError(image) {
+        image.onerror = "";
+        image.src = "images/tommyBoy.jpg";
+        return true;
+    }
+
+    $("#homeBtn").click(function(event) {
+        event.preventDefault(event);
+        $(document).animate({
+            scrollTop: $(".contentOne").offset().top
+        }, 5000);
+    });
+
+
+
+</script>
+
+
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modalHeader">
+            <a id="modalCloseBtn" data-dismiss="modal" aria-label="Close">&times;</a>
         </div>
-        <div class="mask rgba-white-slight"></div>
-
+        <div id="modalContent1" class="modal-content"></div>
     </div>
-    <!-- Card content -->
-    <div class="card-body text-center" style="padding: 0;">
-
-    </div>
-
 </div>
-<!-- Card -->
 
-<!--<script>-->
-    <!--$( "#randomMovieBtn" ).click(function() {-->
+<div id="sideNavOverlay"></div>
 
-
-    <!--});-->
-<!--</script>-->
-
-
-
-
-<div id="movieInfoDiv">
-
-    <div class="randomButtonDiv" style="margin-bottom: 20px">
-        <button id="randomMovieBtn" class="btn btn-primary" style="font-size: 20px; display: block; margin: 0 auto; border-radius: 50%; height: 60px;"><i class="fa fa-random mr-1"></i></button>
-    </div>
-
-</div>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.9/js/mdb.min.js"></script>
 

@@ -36,13 +36,13 @@
             <!-- Left -->
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost:8080/randomMovie">Random Movie</a>
+                    <a class="nav-link" href="randomMovie.html">Random Movie</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost:8080/randomTV">Random TV Show</a>
+                    <a class="nav-link" href="randomTV.html">Random TV Show</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost:8080/name">Search By Name</a>
+                    <a class="nav-link" href="nameSearch.html">Search By Name</a>
                 </li>
             </ul>
 
@@ -82,6 +82,100 @@
     <h6>Finding something new to watch just got easier.</h6>
     <a style="display: block; margin: 0 auto; width: 15%;" class="btn btn-default" href="#contentOne">Learn More</a>
 </div>
+
+
+<script>
+
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://api.themoviedb.org/3/movie/now_playing?region=US&page=1&language=en-US&api_key=b2b33767c6b429003530678acd077911",
+        "method": "GET",
+        "headers": {},
+        "data": "{}"
+    };
+
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+
+        $("#firstSlide").append('<img style="height: 500px; box-shadow: 0 8px 17px 0 rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,.19);border-radius: 10px; " src="http://image.tmdb.org/t/p/original' + response.results[0].poster_path + '"/>');
+        $("#firstSlide").append('<img style="height: 500px; box-shadow: 0 8px 17px 0 rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,.19);border-radius: 10px; " src="http://image.tmdb.org/t/p/original' + response.results[1].poster_path + '"/>');
+        $("#firstSlide").append('<img style="height: 500px; box-shadow: 0 8px 17px 0 rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,.19);border-radius: 10px; " src="http://image.tmdb.org/t/p/original' + response.results[2].poster_path + '"/>');
+
+        $("#secondSlide").append('<img style="height: 500px; box-shadow: 0 8px 17px 0 rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,.19);border-radius: 10px; " src="http://image.tmdb.org/t/p/original' + response.results[3].poster_path + '"/>');
+        $("#secondSlide").append('<img style="height: 500px; box-shadow: 0 8px 17px 0 rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,.19);border-radius: 10px; " src="http://image.tmdb.org/t/p/original' + response.results[4].poster_path + '"/>');
+        $("#secondSlide").append('<img style="height: 500px; box-shadow: 0 8px 17px 0 rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,.19);border-radius: 10px; " src="http://image.tmdb.org/t/p/original' + response.results[5].poster_path + '"/>');
+
+        $("#thirdSlide").append('<img style="height: 500px; box-shadow: 0 8px 17px 0 rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,.19);border-radius: 10px; " src="http://image.tmdb.org/t/p/original' + response.results[6].poster_path + '"/>');
+        $("#thirdSlide").append('<img style="height: 500px; box-shadow: 0 8px 17px 0 rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,.19);border-radius: 10px; " src="http://image.tmdb.org/t/p/original' + response.results[7].poster_path + '"/>');
+        $("#thirdSlide").append('<img style="height: 500px; box-shadow: 0 8px 17px 0 rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,.19);border-radius: 10px; " src="http://image.tmdb.org/t/p/original' + response.results[8].poster_path + '"/>');
+
+        $("#fourthSlide").append('<img style="height: 500px; box-shadow: 0 8px 17px 0 rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,.19);border-radius: 10px; " src="http://image.tmdb.org/t/p/original' + response.results[9].poster_path + '"/>');
+        $("#fourthSlide").append('<img style="height: 500px; box-shadow: 0 8px 17px 0 rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,.19);border-radius: 10px; " src="http://image.tmdb.org/t/p/original' + response.results[10].poster_path + '"/>');
+        $("#fourthSlide").append('<img style="height: 500px; box-shadow: 0 8px 17px 0 rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,.19);border-radius: 10px; " src="http://image.tmdb.org/t/p/original' + response.results[11].poster_path + '"/>');
+
+        $("#fifthSlide").append('<img style="height: 500px; box-shadow: 0 8px 17px 0 rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,.19);border-radius: 10px; " src="http://image.tmdb.org/t/p/original' + response.results[12].poster_path + '"/>');
+        $("#fifthSlide").append('<img style="height: 500px; box-shadow: 0 8px 17px 0 rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,.19);border-radius: 10px; " src="http://image.tmdb.org/t/p/original' + response.results[13].poster_path + '"/>');
+        $("#fifthSlide").append('<img style="height: 500px; box-shadow: 0 8px 17px 0 rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,.19);border-radius: 10px; " src="http://image.tmdb.org/t/p/original' + response.results[14].poster_path + '"/>');
+    });
+</script>
+
+
+
+<!--Carousel Wrapper-->
+<div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel" style="width: 100%; text-align: center; margin-top: 100px; margin-bottom: 50px; background-color: #ffffff;">
+    <h1 style="padding-bottom: 20px;">Movies In Theatres Now</h1>
+    <!--Indicators-->
+    <ol class="carousel-indicators">
+        <li data-target="#carousel-example-1z" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-1z" data-slide-to="1"></li>
+        <li data-target="#carousel-example-1z" data-slide-to="2"></li>
+        <li data-target="#carousel-example-1z" data-slide-to="3"></li>
+        <li data-target="#carousel-example-1z" data-slide-to="4"></li>
+    </ol>
+    <!--/.Indicators-->
+    <!--Slides-->
+    <div class="carousel-inner" style="overflow: inherit" role="listbox">
+        <!--First slide-->
+        <div id="firstSlide" class="carousel-item active">
+
+        </div>
+        <!--/First slide-->
+        <!--Second slide-->
+        <div id="secondSlide" class="carousel-item">
+
+        </div>
+        <!--/Second slide-->
+        <!--Third slide-->
+        <div id="thirdSlide" class="carousel-item">
+
+        </div>
+        <!--/Third slide-->
+        <!--/Fourth Slide-->
+        <div id="fourthSlide" class="carousel-item">
+
+        </div>
+        <!--/Fifth Slide-->
+        <div id="fifthSlide" class="carousel-item">
+
+        </div>
+
+    </div>
+    <!--/.Slides-->
+    <!--Controls-->
+    <a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+    <!--/.Controls-->
+</div>
+<!--/.Carousel Wrapper-->
+
+
 
 <div style="padding-top: 10px;" id="contentOne">
     <div class="card-deck" style="margin: 100px 50px 100px 50px;">
