@@ -53,9 +53,10 @@ a#newMovieWaves{
     .homeImage {
         position: relative;
         width: 100%;
-        height: 100%;
+        height: 750px;
         background-image: url("images/palmTrees2.jpg");
         background-position: center;
+        background-size: cover;
     }
 }
 
