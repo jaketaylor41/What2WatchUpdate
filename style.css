@@ -52,6 +52,7 @@ a#newMovieWaves{
 @media screen and (max-width: 600px ) {
     .homeImage {
         position: relative;
+        bottom: 80px;
         width: 100%;
         height: 750px;
         background-image: url("images/palmTrees2.jpg");
